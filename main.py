@@ -1,36 +1,20 @@
-from openpyxl import Workbook
+import argparse
+import convert
 
-def convert_csv_to_tsv(filename):
-    with open(filename) as f:
-        contents=f.read()
-    return contents.replace(",","\t")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename", help="name of the file to convert")
+    group=parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("-t", "--tsv_to_xl", help="indicates the input file is a tab delimited file and " +
+                                                  "output should be Excel", action="store_true")
+    group.add_argument("-c", "--csv_to_xl", help="indicates the input file is a comma delimited file and " +
+                                                  "output should be Excel", action="store_true")
 
+    args = parser.parse_args()
 
-def save_csv_as_tsv(filename):
-    contents = convert_csv_to_tsv(filename)
-    tsv_filename = filename + ".tsv"
-    with open(tsv_filename, "w") as f:
-        f.write(contents)
+    filename = args.filename
 
-    return tsv_filename
-
-
-
-def save_tsv_as_xlsx(filename):
-    with open(filename) as f:
-        contents = f.readlines()
-
-
-    items=[c.split("\t") for c in contents]
-    wb = Workbook(write_only=True)
-    ws=wb.create_sheet("data")
-    row_count=0
-    for row in items:
-        ws.append(row)
-        row_count+=1
-        if row_count % 10000==0:
-            print("processing row {}".format(row_count))
-
-    new_filename=filename+".xlsx"
-    wb.save(new_filename)
-    return new_filename
+    if args.tsv_to_xl:
+        convert.FileConvert.save_tsv_as_xlsx(filename)
+    elif args.csv_to_xl:
+        convert.FileConvert.save_csv_as_tsv(filename)
