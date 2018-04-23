@@ -38,12 +38,12 @@ class TestConvert(unittest.TestCase):
 
         csv = "samples/FL_insurance_sample.csv"
         converter = FileConvert(csv)
-        tsv_file = converter.save_csv_as_tsv(output_path="my_tsv.tsv")
+        tsv_file = converter.save_csv_as_tsv(output_path="samples/my_tsv.tsv")
         self.assertTrue (os.path.exists(tsv_file))
         self.assertFalse ((tsv_file==(csv+".tsv")))
 
         converter = FileConvert(tsv_file)
-        xlsx_file = converter.save_tsv_as_xlsx(output_path="my_output.xlsx")
+        xlsx_file = converter.save_tsv_as_xlsx(output_path="samples/my_output.xlsx")
         self.assertTrue (os.path.exists(xlsx_file))
         self.assertFalse ((xlsx_file==(tsv_file+".xlsx")))
 
