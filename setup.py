@@ -14,4 +14,4 @@ setup(  name = "file_convert",
         version = "0.1",
         description = "Converts CSV and TSV files to Excel",
         options = {"build_exe": build_exe_options},
-        executables = [Executable("main.py", base=base)])
+        executables = [Executable("main.py", base=base, targetName="file_convert.exe")])
