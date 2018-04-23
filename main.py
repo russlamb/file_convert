@@ -17,7 +17,8 @@ if __name__ == "__main__":
 
     converter = convert.FileConvert(filename)
     if args.tsv_to_xl:
-        converter.save_tsv_as_xlsx(args.output)
+        converter.save_tsv_as_xlsx(args.output if args.output else None,
+                                   args.sheetname if args.sheetname else "data")
     elif args.csv_to_xl:
-        converter.save_csv_as_tsv(args.output)
+        tsv_file = converter.save_csv_as_tsv(args.output)
 
