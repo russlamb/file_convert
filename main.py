@@ -7,8 +7,8 @@ if __name__ == "__main__":
     group=parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-t", "--tsv_to_xl", help="indicates the input file is a tab delimited file and " +
                                                   "output should be Excel", action="store_true")
-    group.add_argument("-c", "--csv_to_xl", help="indicates the input file is a comma delimited file and " +
-                                                  "output should be Excel", action="store_true")
+    group.add_argument("-c", "--csv_to_tsv", help="indicates the input file is a comma delimited file and " +
+                                                  "output should be Tab delimtied", action="store_true")
     parser.add_argument("-o", "--output", help="file path at which to save output")
     parser.add_argument("-s", "--sheetname", help="name of sheet where the data is saved")
     args = parser.parse_args()
