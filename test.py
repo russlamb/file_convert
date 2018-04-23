@@ -1,14 +1,17 @@
-from .main import save_csv_as_tsv, save_tsv_as_xlsx
+import os
 import unittest
-import os,io
+
+from convert import FileConvert
+
 
 class TestConvert(unittest.TestCase):
-
     def test_convert_csv_xl(self):
-        tsv_file = save_csv_as_tsv("FL_insurance_sample.csv")
-        assert(os.path.exists(tsv_file))
-        xlsx_file = save_tsv_as_xlsx(tsv_file)
-        assert(os.path.exists(xlsx_file))
+        csv = "samples/FL_insurance_sample.csv"
+        converter = FileConvert(csv)
+        tsv_file = converter.save_csv_as_tsv(csv)
+        assert (os.path.exists(tsv_file))
+        xlsx_file = converter.save_tsv_as_xlsx(tsv_file)
+        assert (os.path.exists(xlsx_file))
 
 
 if __name__ == "__main__":
