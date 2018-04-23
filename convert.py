@@ -13,7 +13,11 @@ class FileConvert():
     def save_csv_as_tsv(self, output_path=None):
         filename = self.filename
         contents = self.convert_csv_to_tsv()
-        tsv_filename = (filename + ".tsv") if output_path is None else output_path
+        if output_path is None:
+            tsv_filename = (filename + ".tsv")
+        else:
+            tsv_filename = output_path
+
         print("Saving TSV file as {}".format(tsv_filename))
         with open(tsv_filename, "w") as f:
             f.write(contents)
