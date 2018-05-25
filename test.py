@@ -1,7 +1,8 @@
 import os
 import unittest
 
-from convert import FileConvert
+from csv_to_xlsx.convert import FileConvert
+
 
 def delete_files_if_exists(path_list):
     for path in path_list:

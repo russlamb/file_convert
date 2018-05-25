@@ -1,5 +1,6 @@
 import argparse
-import convert
+
+from csv_to_xlsx import convert
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

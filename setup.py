@@ -1,17 +1,21 @@
-import sys
-from cx_Freeze import setup, Executable
+import setuptools
 
-# Dependencies are automatically detected, but it might need fine tuning.
-build_exe_options = {"packages": ["argparse","openpyxl"], "excludes": []}
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-# GUI applications require a different base on Windows (the default is for a
-# console application).
-base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
-
-setup(  name = "file_convert",
-        version = "0.1",
-        description = "Converts CSV and TSV files to Excel",
-        options = {"build_exe": build_exe_options},
-        executables = [Executable("main.py", base=base, targetName="file_convert.exe")])
+setuptools.setup(
+    name="csv_to_xlsx",
+    version="0.0.1",
+    author="Russ Lamb",
+    author_email="revoltingrobot@gmail.com",
+    description="Convert CSV and TSV to XLSX files using openpyxl",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/russlamb/file_convert",
+    packages=setuptools.find_packages(),
+    classifiers=(
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ),
+)
